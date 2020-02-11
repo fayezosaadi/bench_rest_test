@@ -59,6 +59,10 @@ const groupTransactionsByDate = async (transactionsList, transactions = {}) => {
     return transactions
 };
 
+/**
+ *
+ * @returns {Promise<(string|number)[][]>}
+ */
 const main = async () => {
     const { data } = await fetchTransactions();
     let transactionsByDate = await groupTransactionsByDate(data.transactions);
