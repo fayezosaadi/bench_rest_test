@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const { getTransactionsByDay, calculateDailyBalances, main } = require("./app");
+const { groupTransactionsByDate, calculateDailyBalances, main } = require("./app");
 
 const transactionsMock = [
   {
@@ -71,24 +71,24 @@ const transactionsAPIMock3 = {
   ]
 };
 
-let transactionsByDay;
+let transactionsByDate;
 
 jest.mock('axios');
 
 describe("App tests", () => {
 
   test('returns sum of transactions per day', async () => {
-    transactionsByDay = await getTransactionsByDay(transactionsMock);
-    expect(Object.keys(transactionsByDay).length).toBe(2);
-    expect(transactionsByDay["2013-12-13"]).toBe(-10.5);
-    expect(transactionsByDay["2013-12-12"]).toBe(-30);
+    transactionsByDate = await groupTransactionsByDate(transactionsMock);
+    expect(Object.keys(transactionsByDate).length).toBe(2);
+    expect(transactionsByDate["2013-12-13"]).toBe(-10.5);
+    expect(transactionsByDate["2013-12-12"]).toBe(-30);
   });
 
   test('returns running daily balances', async () => {
-    const dailyBalances = await calculateDailyBalances(transactionsByDay);
+    const dailyBalances = await calculateDailyBalances(transactionsByDate);
     const [firstDay, secondDay] = dailyBalances;
 
-    expect(dailyBalances.length).toBe(Object.keys(transactionsByDay).length);
+    expect(dailyBalances.length).toBe(Object.keys(transactionsByDate).length);
     expect(firstDay[1]).toBe(-30);
     expect(secondDay[1]).toBe(-40.5);
   });
