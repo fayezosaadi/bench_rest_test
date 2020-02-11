@@ -1,0 +1,24 @@
+{
+  "name": "bench_rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node bin/app",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fayezosaadi/bench_rest_test.git"
+  },
+  "author": "fayezosaadi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fayezosaadi/bench_rest_test/issues"
+  },
+  "homepage": "https://github.com/fayezosaadi/bench_rest_test#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "jest": "^25.1.0"
+  }
+}
