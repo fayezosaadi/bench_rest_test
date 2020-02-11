@@ -33,12 +33,9 @@ const getTransactionsByDay = async (transactionsList, transactions = {}) => {
 
 const main = async () => {
   const { data } = await fetchTransactions();
-  let numberOfTransactionsFetched = 0;
+  let transactionsByDay = await getTransactionsByDay(data.transactions);
+  let numberOfTransactionsFetched = data.transactions.length;
   let page = 1;
-  let transactionsByDay = {};
-
-  transactionsByDay = await getTransactionsByDay(data.transactions, transactionsByDay);
-  numberOfTransactionsFetched += data.transactions.length;
 
   while ( numberOfTransactionsFetched < data.totalCount) {
     page += 1;
